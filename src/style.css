@@ -1,6 +1,31 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
+  height: 100vh;
   background-image: url(/src/fotocasino.png);
   background-size: cover;
+  overflow: hidden;
+}
+
+.main-card {
+  border-radius: 1rem;
+  width: 235px;
+  height: auto;
+  min-width: 150px;
+  min-height: 340px;
+  margin-top: 10rem;
+}
+.number {
+  font-size: 50px;
+  justify-items: center;
+}
+.icons {
+  font-size: 3rem;
 }

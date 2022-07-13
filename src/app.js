@@ -6,15 +6,19 @@ import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
 window.onload = function() {
-  //write your code here
+  //Asignamos valores para modificar HTML (DOM)
 
-  // definir variables/array
+  const card = document.querySelector(".card");
+  const cardNumber = document.querySelector(".number");
+  const cardIcon = document.querySelector(".icons");
+  const btnRandom = document.querySelector("#btn-random");
 
+  //Creo variables para los iconos y números de las cartas
   const numbers = ["A", 2, 3, 4, 5, 6, 7, 8, 9, "J", "Q", "K"];
 
   const suits = ["♦", "♥", "♠", "♣"];
 
-  // Creamos funcion Random (para números y palos)
+  // Creamos funcion generar los números y palos de forma aleatoria
 
   const generateRandom = arr => {
     let numberRandom = Math.floor(Math.random() * arr.length);
@@ -22,20 +26,31 @@ window.onload = function() {
     return arr[numberRandom];
   };
 
-  // console.log(generateRandom(numbers));
+  // Creo función que me genera carta aleatoriamente
 
-  //Asignamos valores para modificar HTML (DOM)
+  const generateCard = () => {
+    cardNumber.innerHTML = generateRandom(numbers);
+    let suit = generateRandom(suits);
+    cardIcon.innerHTML = suit;
+    if (suit === "♦" || suit === "♥") {
+      cardIcon.style.color = "red";
+    } else {
+      cardIcon.style.color = "black";
+    }
+  };
 
-  const card = document.querySelector(".card");
-  const cardNumber = document.querySelector(".number");
-  const cardIcon = document.querySelector(".icons");
+  //Llamada a la función para generar primera carta aleatoria
 
-  cardNumber.innerHTML = generateRandom(numbers);
-  cardIcon.innerHTML = generateRandom(suits);
+  generateCard();
 
-  // Creamos temporizador ( Agrega un timer que genere una nueva carta automaticamente cada 10 segundos.)
+  // Añado función al botón para generar carta aleatoria al hacer click
 
-  const generatorTimer = () => window.setInterval(generateRandom, 10000);
+  btnRandom.addEventListener("click", () => {
+    generateCard();
+  });
 
-  // generatorTimer();
+  //Agrego un timer que genere una nueva carta automaticamente cada 5 segundos (10 seg me parecia mucho)).
+
+  const generatorTimer = () => window.setInterval(generateCard, 5000);
+  generatorTimer();
 };

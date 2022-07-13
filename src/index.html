@@ -10,16 +10,31 @@
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container-fluid text-center">
-      <div class="card"></div>
-        <div class ="icons"></div>
-        <div class="number"></div>
-        <div class="icons"></div>
+    <div class="container">
+      <div class="row my-3">
+        <div class="d-flex justify-content-center gap-3 col-12 pt-20">
+          <button
+            type="button"
+            class="btn btn-outline-light shadow-none"
+            id="btn-random"
+            
+          >
+            New Card
+          </button>
+        </div>
       </div>
-    </div>  
+      <div class="row justify-content-center mx-2" id="card-container">
+        <div class="main-card d-flex flex-column bg-white shadow-lg col-11">
+          <div class="icons flex-grow-1"></div>
+          <div class="number align-self-center flex-grow-1"></div>
+          <div class="icons align-self-end" id="icon-bottom"></div>
+        </div>     
+      </div>
+    </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
