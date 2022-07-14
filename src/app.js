@@ -8,10 +8,11 @@ import "./assets/img/4geeks.ico";
 window.onload = function() {
   //Asignamos valores para modificar HTML (DOM)
 
-  const card = document.querySelector(".card");
+  const card = document.querySelector(".main-card");
   const cardNumber = document.querySelector(".number");
-  const cardIcon = document.querySelector(".icons");
+  const cardIcon = document.querySelectorAll(".icons");
   const btnRandom = document.querySelector("#btn-random");
+  const btnResize = document.querySelector("#btn-size");
 
   //Creo variables para los iconos y números de las cartas
   const numbers = ["A", 2, 3, 4, 5, 6, 7, 8, 9, "J", "Q", "K"];
@@ -31,12 +32,14 @@ window.onload = function() {
   const generateCard = () => {
     cardNumber.innerHTML = generateRandom(numbers);
     let suit = generateRandom(suits);
-    cardIcon.innerHTML = suit;
-    if (suit === "♦" || suit === "♥") {
-      cardIcon.style.color = "red";
-    } else {
-      cardIcon.style.color = "black";
-    }
+
+    cardIcon.forEach(element => {
+      element.innerHTML = suit;
+
+      suit === "♦" || suit === "♥"
+        ? (element.style.color = "red")
+        : (element.style.color = "black");
+    });
   };
 
   //Llamada a la función para generar primera carta aleatoria
@@ -48,7 +51,26 @@ window.onload = function() {
   btnRandom.addEventListener("click", () => {
     generateCard();
   });
+  // Creo función para que el usuario pueda modificar las medidas de la carta
 
+  const cardResize = () => {
+    const widthCard = parseInt(document.querySelector("#card-width").value);
+
+    const heightCard = parseInt(document.querySelector("#card-height").value);
+    if (
+      !isNaN(widthCard) &&
+      widthCard > 0 &&
+      !isNaN(heightCard) &&
+      heightCard > 0
+    ) {
+      card.style.width = widthCard + "px";
+      card.style.height = heightCard + "px";
+    }
+  };
+  // Agrego funcion al botón de redimensionar.
+  btnResize.addEventListener("click", () => {
+    cardResize();
+  });
   //Agrego un timer que genere una nueva carta automaticamente cada 5 segundos (10 seg me parecia mucho)).
 
   const generatorTimer = () => window.setInterval(generateCard, 5000);
